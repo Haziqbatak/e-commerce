@@ -18,11 +18,10 @@ class isUser
     {
         if (Auth::check() && Auth::user()->role == 'user') 
         {
-            return redirect()->route('user.dashboard');
-        } elseif (Auth::check() && Auth::user()->role == 'admin') 
-        {
-            return redirect()->route('admin.dashboard');
+            return $next($request);
         }
-        return $next($request);
+        
+        return redirect()->route('login');
+
     }
 }

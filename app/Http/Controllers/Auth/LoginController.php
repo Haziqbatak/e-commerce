@@ -29,10 +29,10 @@ class LoginController extends Controller
     {
         if (auth()->user()->role == 'admin') 
         {
-            return ('/admin/dashboard');
+            return 'admin/dashboard';
         } elseif (auth()->user()->role == 'user') 
         {
-            return redirect('/user/dashboard');
+            return 'user/dashboard';
         }
     }
 

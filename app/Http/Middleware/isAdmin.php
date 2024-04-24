@@ -18,14 +18,10 @@ class isAdmin
     {
         if (Auth::check() && Auth::user()->role == 'admin') 
         {
-            return redirect()->route('admin.dashboard');
-        } elseif (Auth::check() && Auth::user()->role == 'user') 
-        {
-            return redirect()->route('user.dashboard');
+            return $next($request);
         }
         
         return redirect()->route('login');
-
-        return $next($request);
+        
     }
 }
