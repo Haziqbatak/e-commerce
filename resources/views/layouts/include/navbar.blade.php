@@ -1,3 +1,5 @@
+<script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
+
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -224,7 +226,6 @@
                                 <span>Sign Out</span>
                             </button>
                         </form>
-                        <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
                     </li>
 
                 </ul><!-- End Profile Dropdown Items -->
