@@ -22,7 +22,7 @@
                 <i class="bi bi-plus"></i>
                 Add Product
             </button>
-            @include('pages.admin.category.modal-create')
+            @include('pages.admin.product.createProduct')
 
 
 
@@ -34,7 +34,7 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Action</th>
-                        <th>Action</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
