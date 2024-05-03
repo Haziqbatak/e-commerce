@@ -24,7 +24,7 @@
             </ul>
             <ul id="components-nav" class="nav-content collapse {{ request()->routeIs('admin.category.*') ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="{{ route('admin.product.index') }}">
                         <i class="bi bi-circle"></i><span>Product</span>
                     </a>
                 </li>
