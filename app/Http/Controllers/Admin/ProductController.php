@@ -16,9 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
         $product = Product::select('id', 'name', 'category_id', 'price')->latest()->get();
-        return  view('pages.admin.product.index', compact(
+        return view('pages.admin.product.index', compact(
             'product'
         ));
     }
@@ -28,10 +27,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
         $category = Category::select('id', 'name')->latest()->get();
 
-        return view('pages.admin.product.createProduct');
+        return view('pages.admin.product.createProduct', compact(
+            'category'
+        ));
     }
 
     /**
@@ -39,25 +39,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, [
-            'name' => 'required',
-            'category_id' => 'required',
-            'price' => 'required',
-            'description' => 'required'
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|integer',
         ]);
 
         try {
-
             $data = $request->all();
             $data['slug'] = Str::slug($request->name);
-            
+
             Product::create($data);
 
-            return redirect()->back()->with('success', 'Category added succesfull');
-
-        } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Failed added category');
+            return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
@@ -74,9 +71,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        $product = Product::find('id');
-        $category = Category::select('id', 'name')->latest()->get();
+        $product = Product::findOrFail($id);
+        $category = Category::select('id', 'name')->get();
+
+        return view('pages.admin.product.edit', compact(
+            'product',
+            'category'
+        ));
     }
 
     /**
@@ -84,27 +85,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
         $this->validate($request, [
-            'name' => 'required',
-            'category_id' => 'required',
-            'price' => 'required',
-            'description' => 'required'
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|integer',
         ]);
 
         try {
-            $product = Product::find($id);
-
             $data = $request->all();
             $data['slug'] = Str::slug($request->name);
-            
+
+            $product = Product::findOrFail($id);
             $product->update($data);
 
-            return redirect()->route('admin.product.index')->with('success', 'Edit is succes');
-
-        } catch (Exception $e) {
-            dd($e->getMessage());
-            return redirect()->route('admin.product.index')->with('error', 'Edit is failed');
+            return redirect()->route('admin.product.index')->with('success', 'Product updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
@@ -113,17 +110,13 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         try {
-            $product = Product::find($id);
-            
+            $product = Product::findOrFail($id);
             $product->delete();
 
-            return redirect()->back()->with('success', 'Delete is succes');
-
-        } catch (Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->with('error', 'Delete is failed');
+            return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }

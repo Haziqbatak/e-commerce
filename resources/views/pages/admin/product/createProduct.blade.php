@@ -1,57 +1,54 @@
+
 @extends('layouts.parent')
 
-@section('title', 'create')
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Product</h5>
+@section('title', 'Create Product')
 
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="#">Product</a></li>
-                <li class="breadcrumb-item active">Data Product</li>
-            </ol>
-        </nav>
+@section('content')
 
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Create Product</h5>
 
-        <form action="{{ route('admin.product.store') }}" method="POST">
-            @csrf
-            @method('POST')
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item active">Data Product</li>
+                </ol>
+            </nav>
 
-            <div class="col-12">
-                <div class="modal-body">
-                    <label for="inputName" class="form-label">Product Name</label>
-                    <input type="text" class="form-control" id="categoryName" name="name"
-                        value="{{ old('name') }}">
-                </div>
-
+            <!-- Vertical Form -->
+            <form class="row g-3" method="post" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+                @csrf
+                @method('POST')
                 <div class="col-12">
-                    <label class="col-sm-2 col-form-label">Category</label>
-                    <div class="col-12">
-                        <select class="form-select" aria-label="Default select example" name="category_id">
-                            <option selected>Open this select menu</option>
-                            @foreach ($category as $row)
-                                <option value="{{ $row->id }}">{{ $row->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <label for="name" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                 </div>
                 <div class="col-12">
-                    <label for="productPrice" class="form-label">Product Price</label>
-                    <input type="text" class="form-control" id="productPrice" name="price"
-                        value="{{ old('price') }}">
+                    <label for="category_id" class="form-label">Category</label>
+                    <select name="category_id" id="category_id" class="form-select" required>
+                        <option selected>Choose...</option>
+                        @foreach ($category as $row)
+                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-12">
-                    <label for="productDescription" class="form-label">Description</label>
-                    <textarea class="form-control" aria-label="With textarea" id="productDescription" name="description">{{ old('description') }}</textarea>
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}">
                 </div>
-                <div class="mt-4">
-                    <a href="{{ route('admin.product.index') }}" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Cancle</a>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                <div class="col-12">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ old('description') }}</textarea>
                 </div>
-        </form>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+
+        </div>
     </div>
-</div>
-</div>
+
 @endsection

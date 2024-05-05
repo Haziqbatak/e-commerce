@@ -18,11 +18,11 @@
 
             {{-- button modal create category --}}
             <!-- Basic Modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModalCategory">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModalCategory">
                 <i class="bi bi-plus"></i>
                 Add Product
             </button>
-            @include('pages.admin.product.createProduct')
+            {{-- @include('pages.admin.product.createProduct') --}}
 
 
 
