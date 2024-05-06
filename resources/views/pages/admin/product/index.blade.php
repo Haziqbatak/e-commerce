@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Category</h5>
+            <h5 class="card-title">Product</h5>
 
             <nav>
                 <ol class="breadcrumb">
@@ -18,10 +18,10 @@
 
             {{-- button modal create category --}}
             <!-- Basic Modal -->
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModalCategory">
+            <a  href="{{ route('admin.product.create') }}" class="btn btn-primary">
                 <i class="bi bi-plus"></i>
                 Add Product
-            </button>
+            </a>
             {{-- @include('pages.admin.product.createProduct') --}}
 
 
@@ -45,7 +45,10 @@
                         <td>{{ $row->category->name }}</td>
                         <td>{{ $row->price }}</td>
                         <td>
-                            <a href="{{ route('admin.product.update', $row->id) }}" class="btn btn-warning">
+                            <a href="{{ route('admin.product.gallery.index', $row->id) }}" class="btn btn-primary">
+                                <i class="bi bi-image"></i>
+                            </a>
+                            <a href="{{ route('admin.product.edit', $row->id) }}" class="btn btn-warning">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             <form action="{{ route('admin.product.destroy', $row->id) }}" method="POST" class="d-inline">
