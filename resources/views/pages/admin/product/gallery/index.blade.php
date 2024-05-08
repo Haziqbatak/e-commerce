@@ -16,12 +16,16 @@
                 </ol>
             </nav>
 
-            
+
             <!-- Basic Modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
                 <i class="bi bi-plus-circle">Product Gallery</i>
             </button>
-            
+
+            <a href="{{ route('admin.product.index') }}" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+
             @include('pages.admin.product.gallery.modal-create')
 
             <!-- End Basic Modal-->
@@ -36,16 +40,26 @@
                 </thead>
                 <tbody>
                     @forelse ($product->product_galleries as $row)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>
-                            <img src="" alt="" srcset="">
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ url('storage/product/gallery', $row->image) }}" alt="" class="w-25">
+                            </td>
+                            <td>
+                                <form action="{{ route('admin.product.gallery.destroy', [$product->id, $row->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     @empty
-                    <tr>
-                        <td colspan="3" class="text-center">data noy found</td>
-                    </tr>
+                        <tr>
+                            <td colspan="3" class="text-center">data noy found</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
