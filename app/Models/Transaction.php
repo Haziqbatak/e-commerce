@@ -10,14 +10,16 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
+        'slug',
         'email',
         'phone',
         'adress',
         'courier',
         'payment',
         'payment_url',
-        'static',
+        'status',
         'total_price'
     ];
 

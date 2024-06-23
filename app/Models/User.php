@@ -50,7 +50,7 @@ class User extends Authenticatable
         return $this->hasMany(TransactionItem::class);
     }
 
-    public function Cart()
+    public function cart()
     {
         return $this->hasMany(Cart::class);
     }

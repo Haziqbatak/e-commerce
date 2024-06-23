@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cart extends Model
 {
@@ -14,13 +16,13 @@ class Cart extends Model
         'product_id'
     ];
 
-    public function products()
+    public function product()
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function Cart()
+    public function user()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsTo(User::class);
     }
 }

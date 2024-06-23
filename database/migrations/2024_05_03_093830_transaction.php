@@ -14,15 +14,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignFor(User::class)->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(User::class)->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
+            $table->string('slug');
             $table->string('email');
             $table->string('phone');
             $table->string('adress');
-            $table->string('courier');
-            $table->string('payment');
-            $table->string('payment_url');
-            $table->string('static');
+            $table->string('courier')->nullable();
+            $table->string('payment')->default('midtrans');
+            $table->string('payment_url')->nullable();
+            $table->string('status')->default('pending');
             $table->string('total_price');
             $table->timestamps();
         });

@@ -30,68 +30,27 @@
                 </li>
             </ul>
         </li>
-                {{-- </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.transaction.*', 'admin.my-transaction.*') ? '' : 'collapsed' }}" data-bs-target="#components-nav" data-bs-toggle="collapse"
+                href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Transaction</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse {{ request()->routeIs('admin.my-transaction.index', 'admin.product.gallery.index') ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="components-badges.html">
-                        <i class="bi bi-circle"></i><span>Badges</span>
+                    <a href="{{ route('admin.my-transaction.index') }}" class="{{ request()->routeIs('admin.my-transaction.edit') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>My Transaction</span>
                     </a>
                 </li>
                 <li>
-                    <a href="components-breadcrumbs.html">
-                        <i class="bi bi-circle"></i><span>Breadcrumbs</span>
+                    <a href="{{ route('admin.transaction.index') }}" class="{{ request()->routeIs('admin.transaction.*') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Transaction</span>
                     </a>
                 </li>
-                <li>
-                    <a href="components-buttons.html">
-                        <i class="bi bi-circle"></i><span>Buttons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-cards.html">
-                        <i class="bi bi-circle"></i><span>Cards</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-carousel.html">
-                        <i class="bi bi-circle"></i><span>Carousel</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-list-group.html">
-                        <i class="bi bi-circle"></i><span>List group</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-modal.html">
-                        <i class="bi bi-circle"></i><span>Modal</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tabs.html">
-                        <i class="bi bi-circle"></i><span>Tabs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-pagination.html">
-                        <i class="bi bi-circle"></i><span>Pagination</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-progress.html">
-                        <i class="bi bi-circle"></i><span>Progress</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-spinners.html">
-                        <i class="bi bi-circle"></i><span>Spinners</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tooltips.html">
-                        <i class="bi bi-circle"></i><span>Tooltips</span>
-                    </a>
-                </li> --}}
-        <!-- End Components Nav -->
+            </ul>
+        </li>
 
         
 
